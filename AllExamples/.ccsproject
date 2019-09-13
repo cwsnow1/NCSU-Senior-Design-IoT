@@ -14,5 +14,5 @@
 	<templateProperties value="id=eusci_b_i2c_ex4_masterTxSingle.projectspec.eusci_b_i2c_ex4_masterTxSingle"/>
 	<origin value="C:/Users/Caleb/Desktop/eusci_b_i2c"/>
 	<filesToOpen value=""/>
-	<isTargetManual value="false"/>
+	<isTargetManual value="true"/>
 </projectOptions>
