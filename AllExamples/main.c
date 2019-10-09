@@ -50,6 +50,7 @@
 //*****************************************************************************
 
 extern bool client_connected;
+extern uint8_t RXDATA[];
 
 void main(void)
 {
@@ -80,7 +81,7 @@ void main(void)
 #endif
 
     UART_init(EUSCI_A0_BASE);
-    // UART_init(EUSCI_A3_BASE);
+    UART_init(EUSCI_A3_BASE);
 
     timer_a_init(TIMER_A0_BASE);
     __enable_interrupt();
@@ -105,10 +106,7 @@ void main(void)
         ADC12_B_startConversion(ADC12_B_BASE, ADC12_B_MEMORY_0, ADC12_B_SINGLECHANNEL);
 #endif
 
-        if (client_connected)
-        {
             ESP32_sendData();
-        }
 
 
     }

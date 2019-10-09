@@ -53,5 +53,7 @@
 //
 
 void SHT35_sendCommand(uint8_t MSB, uint8_t LSB);
+float SHT35_getTemp(uint8_t data[]);
+float SHT35_getHumidity(uint8_t data[]);
 
 #endif /* SHT35_H_ */

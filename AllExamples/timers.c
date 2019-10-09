@@ -51,12 +51,14 @@ __attribute__((interrupt(TIMER1_A0_VECTOR)))
 #endif
 void TIMER1_A0_ISR (void)
 {
+	static int i = 0;
     uint16_t compVal = Timer_A_getCaptureCompareCount(TIMER_A1_BASE,
             TIMER_A_CAPTURECOMPARE_REGISTER_0)
             + COMPARE_VALUE;
 
     // wake up for capture and send
-    __bic_SR_register_on_exit(LPM1_bits);
+    if((++i % 20) == 0)
+    	__bic_SR_register_on_exit(LPM1_bits);
 
     //Add Offset to CCR0
     Timer_A_setCompareValue(TIMER_A1_BASE,

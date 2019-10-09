@@ -7,6 +7,7 @@
 #include "esp32.h"
 #include "i2c/sht35.h"
 #include "adc/adc.h"
+#include <stdio.h>
 
 extern uint8_t UART_buffer[];
 extern uint8_t RXDATA[];
@@ -96,8 +97,9 @@ void ESP32_transmitArray(uint8_t data[], uint8_t length)
 void ESP32_sendData(void)
 {
 #ifdef SHT35
-    uint8_t data[4] = { RXDATA[0], RXDATA[1], RXDATA[3], RXDATA[4] };
-    ESP32_transmitArray(data, 4);
+	EUSCI_A_UART_transmitData(EUSCI_A3_BASE, '0');
+	EUSCI_A_UART_transmitData(EUSCI_A3_BASE, RXDATA[0]);
+	EUSCI_A_UART_transmitData(EUSCI_A3_BASE, RXDATA[1]);
 #endif
 #ifdef ADC_A4
     uint8_t data[2] =
