@@ -15,7 +15,13 @@ void ESP32_sendData(void);
 
 // Commands
 // all commands end with carriage return (\r)
-// AT+SSID="ncsu"
+// AT+ssid="ssid"
+// AT+pass="password"
+// AT+connString="connection_string"
+// AT+telemetry="telemetry","value"
+// AT+addTelemetry="telemetry"
+// AT+removeTelemetry="telemetry"
+// AT+clearTelemetry
 
 
 #endif /* ESP32_H_ */
