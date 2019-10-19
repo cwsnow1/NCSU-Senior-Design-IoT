@@ -13,4 +13,9 @@ void init_ESP32(void);
 void ESP32_transmit_4byte_Array(uint8_t data[4]);
 void ESP32_sendData(void);
 
+// Commands
+// all commands end with carriage return (\r)
+// AT+SSID="ncsu"
+
+
 #endif /* ESP32_H_ */

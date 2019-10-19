@@ -107,26 +107,12 @@ __attribute__((interrupt(USCI_A0_VECTOR)))
 #endif
 void USCI_A3_ISR(void) {
 	uint8_t RXData;
-	static int i = 0;
 	switch (__even_in_range(UCA3IV, USCI_UART_UCTXCPTIFG)) {
 	case USCI_NONE:
 		break;
 	case USCI_UART_UCRXIFG:
 		RXData = EUSCI_A_UART_receiveData(EUSCI_A3_BASE);
-		if (RXData == 0xFE) {
-			client_connected = true;
-		} else if (RXData == 'C') {
-			int j = (i - 1) & (BUFFER_SIZE-1);
-			if(UART_buffer[j] == ','){
-				j = (j - 1) & (BUFFER_SIZE-1);
-				if(UART_buffer[j] == '0')
-					client_connected = false;
-			}
-		}
 		EUSCI_A_UART_transmitData(EUSCI_A0_BASE, RXData);
-		UART_buffer[i++] = RXData;
-		i &= BUFFER_SIZE - 1; // BUFFER_SIZE needs to be a power of 2
-
 		break;
 	case USCI_UART_UCTXIFG:
 		break;
