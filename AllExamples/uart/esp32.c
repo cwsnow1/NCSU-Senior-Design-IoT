@@ -8,6 +8,8 @@
 #include "i2c/sht35.h"
 #include "adc/adc.h"
 #include <stdio.h>
+ #include <unistd.h>
+ #include <stdlib.h>
 
 extern uint8_t UART_buffer[];
 extern uint8_t RXDATA[];
@@ -107,3 +109,23 @@ void ESP32_sendData(void)
     ESP32_transmitArray(data, 2);
 #endif
 }
+void ESP32_ssid(char* ssid);
+{
+    int n;
+    n=sizeof(ssid);
+    char* ssid2;
+    ssid2[0]='A';
+    ssid2[1]='T';
+    ssid2[n+2]='\';
+    ssid2[n+3]='r';
+    for(i=0,i<=n,i++)
+    {
+        ssid2[i+2]=ssid[i];
+    }
+    EUSCI_A_UART_transmitData(EUSCI_A3_BASE, ssid2);
+
+
+
+}
+// all commands end with carriage return (\r)
+// AT+ssid="ssid"
