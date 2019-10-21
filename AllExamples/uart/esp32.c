@@ -109,23 +109,68 @@ void ESP32_sendData(void)
     ESP32_transmitArray(data, 2);
 #endif
 }
-void ESP32_ssid(char* ssid);
+void ESP32_ssid(char* ssid)
 {
-    int n;
-    n=sizeof(ssid);
-    char* ssid2;
-    ssid2[0]='A';
-    ssid2[1]='T';
-    ssid2[n+2]='\';
-    ssid2[n+3]='r';
-    for(i=0,i<=n,i++)
-    {
-        ssid2[i+2]=ssid[i];
-    }
-    EUSCI_A_UART_transmitData(EUSCI_A3_BASE, ssid2);
-
-
-
+    EUSCI_A_UART_transmitString(EUSCI_A3_BASE, "AT");
+    EUSCI_A_UART_transmitString(EUSCI_A3_BASE, ssid);
+    EUSCI_A_UART_transmitString(EUSCI_A3_BASE, "\r");
 }
+
+void ESP32_pass(char* pass)
+{
+    EUSCI_A_UART_transmitString(EUSCI_A3_BASE, "AT");
+    EUSCI_A_UART_transmitString(EUSCI_A3_BASE, pass);
+    EUSCI_A_UART_transmitString(EUSCI_A3_BASE, "\r");
+}
+void ESP32_connString(char* connString)
+{
+    EUSCI_A_UART_transmitString(EUSCI_A3_BASE, "AT");
+    EUSCI_A_UART_transmitString(EUSCI_A3_BASE, connString);
+    EUSCI_A_UART_transmitString(EUSCI_A3_BASE, "\r");
+}
+void ESP32_telemetry(char* pass, int value)
+{
+    EUSCI_A_UART_transmitString(EUSCI_A3_BASE, "AT");
+    EUSCI_A_UART_transmitString(EUSCI_A3_BASE, pass);
+    EUSCI_A_UART_transmitData(EUSCI_A3_BASE, value);
+    EUSCI_A_UART_transmitString(EUSCI_A3_BASE, "\r");
+}
+void ESP32_addTelemetry(char* addTelemetry);
+{
+    EUSCI_A_UART_transmitString(EUSCI_A3_BASE, "AT");
+    EUSCI_A_UART_transmitString(EUSCI_A3_BASE, addTelemetry);
+    EUSCI_A_UART_transmitString(EUSCI_A3_BASE, "\r");
+}
+void ESP32_removeTelemetry(char* removeTelemetry);
+{
+    EUSCI_A_UART_transmitString(EUSCI_A3_BASE, "AT");
+    EUSCI_A_UART_transmitString(EUSCI_A3_BASE, removeTelemetry);
+    EUSCI_A_UART_transmitString(EUSCI_A3_BASE, "\r");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // all commands end with carriage return (\r)
 // AT+ssid="ssid"
