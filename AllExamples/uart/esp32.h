@@ -22,12 +22,10 @@ void ESP32_sendData(void);
 // AT+addTelemetry="telemetry"
 // AT+removeTelemetry="telemetry"
 // AT+clearTelemetry
-void ESP32_ssid(char* ssid);
-void ESP32_pass(char* pass);
-void ESP32_connString(char* connString);
-void ESP32_telemetry(char* pass, int value);
-void ESP32_addTelemetry(char* addTelemetry);
-void ESP32_removeTelemetry(char* removeTelemetry);
+void ESP32_ssid(uint8_t* ssid);
+void ESP32_pass(uint8_t* pass);
+void ESP32_connString(uint8_t* connString);
+void ESP32_telemetry(uint8_t* telemetry, uint8_t* value);
 
 
 

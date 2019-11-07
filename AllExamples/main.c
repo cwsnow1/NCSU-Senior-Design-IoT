@@ -84,6 +84,9 @@ void main(void)
     UART_init(EUSCI_A0_BASE);
     UART_init(EUSCI_A3_BASE);
 
+    ESP32_ssid("ClickForFreeViruses-2.4G");
+    ESP32_pass("u0y8-lokv-bu9x");
+
     timer_a_init(TIMER_A0_BASE);
     __enable_interrupt();
     // Enable ESp32
